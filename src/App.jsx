@@ -578,12 +578,27 @@ export default function App() {
               <div style={{ fontSize: 13, color: "#cbd5e1", lineHeight: 1.7, marginBottom: 10 }}>
                 This audience is identified through online behaviors observed in the last 30 days:
               </div>
-              <div style={{ display: "flex", flexDirection: "column", gap: 6, fontSize: 13, color: "#cbd5e1", lineHeight: 1.7 }}>
-                <div>• Browsing new and used vehicle listings on <span style={{ color: "#f1f5f9", fontWeight: 600 }}>CarGurus</span>, <span style={{ color: "#f1f5f9", fontWeight: 600 }}>CarsDirect</span>, and <span style={{ color: "#f1f5f9", fontWeight: 600 }}>AutoTempest</span></div>
-                <div>• Looking up trade-in values and resale pricing on <span style={{ color: "#f1f5f9", fontWeight: 600 }}>Kelley Blue Book</span></div>
-                <div>• Reading expert reviews and road tests on <span style={{ color: "#f1f5f9", fontWeight: 600 }}>MotorTrend</span>, <span style={{ color: "#f1f5f9", fontWeight: 600 }}>Car and Driver</span>, and <span style={{ color: "#f1f5f9", fontWeight: 600 }}>The Drive</span></div>
-                <div>• Comparing performance specifications on <span style={{ color: "#f1f5f9", fontWeight: 600 }}>Ultimate Specs</span> and <span style={{ color: "#f1f5f9", fontWeight: 600 }}>Zero to 60 Times</span></div>
-                <div>• Researching reliability concerns and owner-reported issues on <span style={{ color: "#f1f5f9", fontWeight: 600 }}>CarComplaints</span></div>
+              <div style={{ display: "flex", flexDirection: "column", gap: 6, fontSize: 13, color: "#cbd5e1", lineHeight: 1.7, paddingLeft: 16 }}>
+                <div style={{ display: "flex", gap: 8 }}>
+                  <span style={{ flexShrink: 0 }}>•</span>
+                  <div>Browsing new and used vehicle listings on <span style={{ color: "#f1f5f9", fontWeight: 600 }}>CarGurus</span>, <span style={{ color: "#f1f5f9", fontWeight: 600 }}>CarsDirect</span>, and <span style={{ color: "#f1f5f9", fontWeight: 600 }}>AutoTempest</span></div>
+                </div>
+                <div style={{ display: "flex", gap: 8 }}>
+                  <span style={{ flexShrink: 0 }}>•</span>
+                  <div>Looking up trade-in values and resale pricing on <span style={{ color: "#f1f5f9", fontWeight: 600 }}>Kelley Blue Book</span></div>
+                </div>
+                <div style={{ display: "flex", gap: 8 }}>
+                  <span style={{ flexShrink: 0 }}>•</span>
+                  <div>Reading expert reviews and road tests on <span style={{ color: "#f1f5f9", fontWeight: 600 }}>MotorTrend</span>, <span style={{ color: "#f1f5f9", fontWeight: 600 }}>Car and Driver</span>, and <span style={{ color: "#f1f5f9", fontWeight: 600 }}>The Drive</span></div>
+                </div>
+                <div style={{ display: "flex", gap: 8 }}>
+                  <span style={{ flexShrink: 0 }}>•</span>
+                  <div>Comparing performance specifications on <span style={{ color: "#f1f5f9", fontWeight: 600 }}>Ultimate Specs</span> and <span style={{ color: "#f1f5f9", fontWeight: 600 }}>Zero to 60 Times</span></div>
+                </div>
+                <div style={{ display: "flex", gap: 8 }}>
+                  <span style={{ flexShrink: 0 }}>•</span>
+                  <div>Researching reliability concerns and owner-reported issues on <span style={{ color: "#f1f5f9", fontWeight: 600 }}>CarComplaints</span></div>
+                </div>
               </div>
               <div style={{ fontSize: 11, color: "#64748b", fontStyle: "italic", marginTop: 10, lineHeight: 1.6 }}>
                 The websites above are a representative sample of automotive research destinations covering a broad set of automotive brands.
@@ -594,7 +609,7 @@ export default function App() {
             <div style={{
               width: 440, flexShrink: 0, background: "#16162a", borderRadius: 12,
               border: "1px solid #1e293b", padding: "22px 26px",
-              display: "flex", flexDirection: "column", justifyContent: "center",
+              display: "flex", flexDirection: "column", justifyContent: "flex-start",
             }}>
               <div style={{ marginBottom: 18 }}>
                 <div style={{ fontSize: 13, color: "#cbd5e1", lineHeight: 1.7 }}>
