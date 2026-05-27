@@ -5,55 +5,55 @@ import {
 } from "recharts";
 
 const STREAMING_RAW_DATA = [
-  { app: "Hulu",                        intender_pct:  23.6, median_index: 103 },
-  { app: "Netflix",                     intender_pct:  17.1, median_index:  96 },
-  { app: "Amazon Prime Video",          intender_pct:  11.7, median_index: 116 },
-  { app: "Paramount+",                  intender_pct:   8.1, median_index: 124 },
-  { app: "Max",                         intender_pct:   6.0, median_index: 103 },
-  { app: "Dish",                        intender_pct:   4.1, median_index:  97 },
-  { app: "Peacock",                     intender_pct:   4.1, median_index: 102 },
-  { app: "Disney+",                     intender_pct:   2.6, median_index:  86 },
-  { app: "Sling TV",                    intender_pct:   2.6, median_index:  85 },
-  { app: "Xfinity Stream",              intender_pct:   2.6, median_index: 116 },
-  { app: "Apple TV",                    intender_pct:   2.2, median_index:  94 },
-  { app: "fubo",                        intender_pct:   2.1, median_index: 115 },
-  { app: "Vudu",                        intender_pct:   1.6, median_index: 116 },
-  { app: "DirecTV",                     intender_pct:   1.3, median_index:  98 },
-  { app: "Tubi",                        intender_pct:   1.2, median_index: 101 },
-  { app: "Pluto TV",                    intender_pct:   1.1, median_index: 105 },
-  { app: "Discovery+",                  intender_pct:   1.0, median_index:  83 },
-  { app: "YouTube TV",                  intender_pct:   0.9, median_index:  77 },
-  { app: "Roku",                        intender_pct:   0.9, median_index:  82 },
-  { app: "Google Play Store",           intender_pct:   0.7, median_index: 108 },
-  { app: "Fox Nation",                  intender_pct:   0.6, median_index: 125 },
+  { app: "Hulu",                        intender_pct: 23.58, median_index: 103 },
+  { app: "Netflix",                     intender_pct: 17.08, median_index:  96 },
+  { app: "Amazon Prime Video",          intender_pct: 11.72, median_index: 116 },
+  { app: "Paramount+",                  intender_pct:  8.11, median_index: 124 },
+  { app: "Max",                         intender_pct:  5.99, median_index: 103 },
+  { app: "Peacock",                     intender_pct:  4.14, median_index: 102 },
+  { app: "Dish",                        intender_pct:  4.08, median_index:  97 },
+  { app: "Xfinity Stream",              intender_pct:  2.65, median_index: 116 },
+  { app: "Disney+",                     intender_pct:  2.63, median_index:  86 },
+  { app: "Sling TV",                    intender_pct:  2.63, median_index:  85 },
+  { app: "Apple TV",                    intender_pct:  2.20, median_index:  94 },
+  { app: "fubo",                        intender_pct:  2.13, median_index: 115 },
+  { app: "Vudu",                        intender_pct:  1.63, median_index: 116 },
+  { app: "DirecTV",                     intender_pct:  1.33, median_index:  98 },
+  { app: "Tubi",                        intender_pct:  1.15, median_index: 101 },
+  { app: "Pluto TV",                    intender_pct:  1.12, median_index: 105 },
+  { app: "Discovery+",                  intender_pct:  1.04, median_index:  83 },
+  { app: "Roku",                        intender_pct:  0.95, median_index:  82 },
+  { app: "YouTube TV",                  intender_pct:  0.89, median_index:  77 },
+  { app: "Google Play Store",           intender_pct:  0.69, median_index: 108 },
+  { app: "Fox Nation",                  intender_pct:  0.55, median_index: 125 },
 ];
 
 const LINEAR_RAW_DATA = [
-  { app: "National Broadcasting Company",         intender_pct:  10.3, median_index: 106 },
-  { app: "CBS Network",                           intender_pct:   9.0, median_index: 109 },
-  { app: "American Broadcasting Company",         intender_pct:   8.9, median_index:  98 },
-  { app: "Fox News Channel",                      intender_pct:   6.9, median_index: 102 },
-  { app: "Fox Broadcasting Company",              intender_pct:   4.8, median_index: 108 },
-  { app: "ESPN",                                  intender_pct:   3.3, median_index: 111 },
-  { app: "MS NOW",                                intender_pct:   2.2, median_index: 101 },
-  { app: "CNN",                                   intender_pct:   1.8, median_index: 123 },
-  { app: "HOME & GARDEN",                         intender_pct:   1.6, median_index:  95 },
-  { app: "TBS",                                   intender_pct:   1.6, median_index: 131 },
-  { app: "History",                               intender_pct:   1.3, median_index: 112 },
-  { app: "Food Network",                          intender_pct:   1.2, median_index:  99 },
-  { app: "Investigation Discovery",               intender_pct:   1.1, median_index: 108 },
-  { app: "Ion Television",                        intender_pct:   1.1, median_index: 106 },
-  { app: "The CW",                                intender_pct:   1.1, median_index: 107 },
-  { app: "Discovery Channel",                     intender_pct:   1.0, median_index:  99 },
-  { app: "Paramount",                             intender_pct:   0.9, median_index: 102 },
-  { app: "FX",                                    intender_pct:   0.9, median_index: 108 },
-  { app: "Disney Junior",                         intender_pct:   0.8, median_index: 155 },
-  { app: "AMC",                                   intender_pct:   0.7, median_index: 147 },
-  { app: "Bravo",                                 intender_pct:   0.7, median_index:  91 },
-  { app: "TLC",                                   intender_pct:   0.6, median_index:  89 },
-  { app: "HBO",                                   intender_pct:   0.5, median_index:  99 },
-  { app: "Turner Classic Movies",                 intender_pct:   0.5, median_index: 101 },
-  { app: "MLB Network",                           intender_pct:   0.5, median_index: 165 },
+  { app: "National Broadcasting Company",         intender_pct: 10.30, median_index: 106 },
+  { app: "CBS Network",                           intender_pct:  8.98, median_index: 109 },
+  { app: "American Broadcasting Company",         intender_pct:  8.86, median_index:  98 },
+  { app: "Fox News Channel",                      intender_pct:  6.85, median_index: 102 },
+  { app: "Fox Broadcasting Company",              intender_pct:  4.76, median_index: 108 },
+  { app: "ESPN",                                  intender_pct:  3.28, median_index: 111 },
+  { app: "MS NOW",                                intender_pct:  2.25, median_index: 101 },
+  { app: "CNN",                                   intender_pct:  1.84, median_index: 123 },
+  { app: "TBS",                                   intender_pct:  1.59, median_index: 131 },
+  { app: "HOME & GARDEN",                         intender_pct:  1.57, median_index:  80 },
+  { app: "History",                               intender_pct:  1.27, median_index: 112 },
+  { app: "Food Network",                          intender_pct:  1.19, median_index:  99 },
+  { app: "Investigation Discovery",               intender_pct:  1.11, median_index: 108 },
+  { app: "Ion Television",                        intender_pct:  1.08, median_index: 106 },
+  { app: "The CW",                                intender_pct:  1.07, median_index: 107 },
+  { app: "Discovery Channel",                     intender_pct:  1.00, median_index:  91 },
+  { app: "Paramount",                             intender_pct:  0.91, median_index: 102 },
+  { app: "FX",                                    intender_pct:  0.86, median_index: 108 },
+  { app: "Disney Junior",                         intender_pct:  0.76, median_index: 155 },
+  { app: "Bravo",                                 intender_pct:  0.74, median_index:  76 },
+  { app: "AMC",                                   intender_pct:  0.69, median_index: 147 },
+  { app: "TLC",                                   intender_pct:  0.58, median_index:  89 },
+  { app: "HBO",                                   intender_pct:  0.52, median_index:  99 },
+  { app: "Turner Classic Movies",                 intender_pct:  0.51, median_index: 101 },
+  { app: "MLB Network",                           intender_pct:  0.51, median_index: 165 },
 ];
 
 const STREAMING_SOV_DATA = [
@@ -161,18 +161,29 @@ function tightBounds(values) {
   };
 }
 
-// Pick SOV x-axis configuration. Returns { min, max, useLog }.
-// Per DD-018: use a log scale ONLY when the meaningful-value range spans
-// more than ~1.5 orders of magnitude (e.g. Coinbase streaming 0.4%-42%
-// gives a ratio of ~100, log triggers). Honda streaming (3%-10%, ratio
-// ~3) and Honda linear (1%-19%, ratio ~15) both stay linear so the data
-// doesn't cluster awkwardly. xMax is snapped to a nice cap ~15% above
-// the observed max.
-function pickSovAxis(values) {
+// Pick a chart-axis configuration from the actual data distribution.
+// Returns { min, max, useLog }. Used by every dynamic axis in the app —
+// the Competitive SOV chart's X-axis (brand SOV %) and the Platform
+// Analysis chart's X-axis (share of viewing time). Per DD-018:
+//   * useLog = true when the meaningful-value range spans more than ~1.2
+//     orders of magnitude (max / min_meaningful > 15). Threshold tuned
+//     to capture long-tail data (platform-share distributions are always
+//     long-tail; SOV distributions are sometimes long-tail and sometimes
+//     narrow). Coinbase streaming SOV (0.4%-42%, ratio 100) triggers
+//     log. Honda streaming SOV (3%-10%, ratio 3) stays linear. Honda
+//     linear SOV (filtered ratio 195) and Honda Platform Analysis X
+//     (ratios 21-39) both trigger log.
+//   * Values below 0.1% are treated as "no activity" and filtered before
+//     the min is computed (they would otherwise pin the log floor).
+//   * xMax snaps to a nice cap ~15% above the observed max so the
+//     highest data point doesn't hug the chart edge.
+//   * Floor is 0 for linear scales, 0.3 for log scales (positive floor
+//     required for log; 0.3 keeps small-value bubbles visible).
+function pickAxisScale(values) {
   const meaningful = values.filter(v => v >= 0.1);
   const vmax = Math.max(...values, 1);
   const vmin = meaningful.length ? Math.min(...meaningful) : 0.5;
-  const useLog = vmax / Math.max(vmin, 0.1) > 30;
+  const useLog = vmax / Math.max(vmin, 0.1) > 15;
   const niceCapsLinear = [5, 10, 12, 15, 20, 25, 30, 40, 50, 75, 100];
   const niceCapsLog    = [5, 10, 15, 20, 25, 30, 40, 50, 75, 100];
   const caps = useLog ? niceCapsLog : niceCapsLinear;
@@ -376,23 +387,39 @@ export default function App() {
     computeBounds(RAW_DATA.map(d => d.median_index), { step: 5, mustInclude: PROPENSITY_THRESHOLD }),
   [viewMode]);
 
-  // Platform Analysis X axis (intender_pct, log scale).
-  // Lower bound fixed at 0.4 (can't log-zero). Upper bound rises with data
-  // with extra right-side padding so the highest-share bubble doesn't hug
-  // the chart border.
-  const platformXBounds = useMemo(() => {
-    const vmax = Math.max(...RAW_DATA.map(d => d.intender_pct));
-    // Pick the next sensible log-friendly cap above vmax * 1.15.
-    const niceCaps = [3, 6, 10, 12, 15, 20, 25, 30, 40];
-    const cap = niceCaps.find(c => c >= vmax * 1.15) || Math.ceil(vmax * 1.2);
-    return { min: 0.4, max: cap };
-  }, [viewMode]);
+  // Platform Analysis X axis: dynamic per DD-018. The same pickAxisScale
+  // helper that drives the Competitive SOV X-axis decides whether this
+  // axis should be log or linear based on the data's actual range. For
+  // platform / network share data the long-tail distribution almost
+  // always triggers log (Honda streaming ratio 39, Honda linear ratio
+  // 21 — both above the 15 threshold), but the rule is what fires, not
+  // a hardcoded mode toggle.
+  const platformXAxis = useMemo(
+    () => pickAxisScale(RAW_DATA.map(d => d.intender_pct)),
+    [viewMode]
+  );
 
-  // Log tick set for the Platform Analysis X axis -- filtered to current bounds.
+  // Tick set for the Platform Analysis X axis. Tick layout differs by
+  // scale type: log uses powers-of-2-ish spacing, linear uses evenly
+  // spaced rounded values from a curated set picked by the current xMax.
   const platformXTicks = useMemo(() => {
-    const all = [0.5, 1, 2, 5, 10, 20, 30];
-    return all.filter(t => t >= platformXBounds.min && t <= platformXBounds.max);
-  }, [platformXBounds]);
+    if (platformXAxis.useLog) {
+      return [0.5, 1, 2, 5, 10, 20, 30, 50, 75, 100]
+        .filter(t => t >= platformXAxis.min && t <= platformXAxis.max);
+    }
+    const sets = [
+      { upTo: 5,   ticks: [0, 1, 2, 3, 4, 5] },
+      { upTo: 10,  ticks: [0, 2, 4, 6, 8, 10] },
+      { upTo: 15,  ticks: [0, 3, 6, 9, 12, 15] },
+      { upTo: 20,  ticks: [0, 5, 10, 15, 20] },
+      { upTo: 25,  ticks: [0, 5, 10, 15, 20, 25] },
+      { upTo: 30,  ticks: [0, 5, 10, 15, 20, 25, 30] },
+      { upTo: 50,  ticks: [0, 10, 20, 30, 40, 50] },
+      { upTo: 100, ticks: [0, 25, 50, 75, 100] },
+    ];
+    const set = sets.find(s => platformXAxis.max <= s.upTo);
+    return set ? set.ticks.filter(t => t <= platformXAxis.max) : [0, platformXAxis.max];
+  }, [platformXAxis]);
 
   // Max priority score in the current mode -- scales the bubble radii on the Platform Analysis chart.
   const maxPriorityPlatform = useMemo(
@@ -620,7 +647,7 @@ export default function App() {
                 fontSize: 14, fontWeight: 700, color: "#f8fafc",
                 textAlign: "center", marginBottom: 12,
               }}>
-                Households Reached by Honda Ads
+                Households Reached by Honda&#8217;s Advertising
               </div>
               <svg viewBox="0 0 310 290" style={{ width: "82.5%", alignSelf: "center" }}>
                 {[
@@ -662,7 +689,7 @@ export default function App() {
                         <text
                           x={155} y={textY}
                           textAnchor="middle" dominantBaseline="central"
-                          fill={group.color} fontSize={18} fontWeight={700} fontFamily="DM Sans"
+                          fill={group.color} fontSize={15} fontWeight={700} fontFamily="DM Sans"
                           style={{ pointerEvents: "none" }}
                         >
                           {group.pct} {group.label}
@@ -741,7 +768,8 @@ export default function App() {
             <ScatterChart margin={{ top: 10, right: 30, bottom: 35, left: 25 }}>
               <XAxis
                 dataKey="intender_pct" type="number"
-                scale="log" domain={[platformXBounds.min, platformXBounds.max]}
+                scale={platformXAxis.useLog ? "log" : "linear"}
+                domain={[platformXAxis.min, platformXAxis.max]}
                 ticks={platformXTicks}
                 tick={{ fill: "#94a3b8", fontSize: 12, fontFamily: "JetBrains Mono" }}
                 stroke="#334155"
@@ -795,7 +823,9 @@ export default function App() {
           fontSize: 11, color: "#475569", fontStyle: "italic",
           padding: "0 0 40px 16px",
         }}>
-          X-axis uses a logarithmic scale to better distribute clustered values. Actual percentages shown on axis labels, tooltips, and table.
+          {platformXAxis.useLog
+            ? "X-axis uses a logarithmic scale to better distribute clustered values. Actual percentages shown on axis labels, tooltips, and the rankings table."
+            : "Actual percentages shown on axis labels, tooltips, and the rankings table."}
         </div>
 
         <div style={{
@@ -807,9 +837,9 @@ export default function App() {
           </div>
           <div style={{ fontSize: 13, color: "#cbd5e1" }}>
             {viewMode === "streaming" ? (
-              <>Three platforms stand out in the upper-right quadrant, each combining high affinity with meaningful audience share. Paramount+ (index 124) shows the highest affinity of any streaming platform, followed by Amazon Prime Video (116) and Xfinity Stream (116) with comparable high affinity. Together, these three platforms represent the most efficient entry points for Honda streaming investment.</>
+              <>Three platforms stand out in the upper-right quadrant, each combining high affinity with meaningful audience share. Paramount+ shows the highest affinity among the Primary Investment platforms, followed by Amazon Prime Video and Xfinity Stream. Together, these three platforms represent optimal investment opportunities for Honda's streaming strategy.</>
             ) : (
-              <>Six networks stand out across broadcast and cable, each over-indexing on Automotive Intenders. NBC (index 106), CBS (109), and Fox Broadcasting (108) lead the broadcast networks, combining the largest reach with modest above-average affinity, making them optimal entry points for reaching this audience at scale. Across cable, CNN (123) and TBS (131) show high affinity, followed by ESPN (111) with strong above-average affinity. Together, these three cable networks represent high-efficiency opportunities for reaching a highly engaged subset of Automotive Intenders.</>
+              <>Seven networks stand out across broadcast and cable, each over-indexing on Automotive Intenders. NBC, CBS, and Fox Broadcasting lead the broadcast networks, combining broad reach with moderate affinity, making them optimal for targeting this audience at scale. Across cable, CNN and TBS have the strongest network affinity, followed by ESPN and History. Together, these four cable networks represent strong options for reaching a highly engaged subset of Automotive Intenders.</>
             )}
           </div>
         </div>
@@ -932,14 +962,15 @@ export default function App() {
           const plotW = svgW - padL - padR, plotH = svgH - padT - padB;
           // Axis configuration is fully data-driven (see DD-018):
           //   * HHI y-axis: ALWAYS linear, tight bounds via tightBounds().
-          //   * SOV x-axis: linear by default; log only when the data range
-          //     exceeds ~1.5 orders of magnitude (pickSovAxis decides).
-          // Honda's streaming SOV (3-10%) and linear SOV (0-19%) both stay
-          // linear. Coinbase's streaming SOV (0.4-42%) would auto-pick log.
+          //   * SOV x-axis: linear by default; log when the data range
+          //     exceeds ~1.2 orders of magnitude (pickAxisScale decides;
+          //     threshold ratio > 15). Honda streaming SOV (ratio 3)
+          //     stays linear. Honda linear SOV (filtered ratio 195)
+          //     picks log. Coinbase streaming SOV (ratio 100) picks log.
           const sovValues = sovMerged.map(d => d.honda);
           const hhiValues = sovMerged.map(d => d.hhi);
 
-          const { min: xMin, max: xMax, useLog: useLogX } = pickSovAxis(sovValues);
+          const { min: xMin, max: xMax, useLog: useLogX } = pickAxisScale(sovValues);
           const { min: hhiMin, max: hhiMax, step: hhiStep } = tightBounds(hhiValues);
 
           const xScale = useLogX
