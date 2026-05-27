@@ -131,7 +131,54 @@ function computeBounds(values, { step, mustInclude } = { step: 1, mustInclude: n
   };
 }
 
-const LOG_TICKS = [0.5, 1, 2, 4, 8, 16, 24];
+// Pick a "nice" step value targeting ~5-7 gridlines for the given data span.
+// Used by tightBounds() below to choose readable HHI gridline spacing per dataset.
+function pickNiceStep(span) {
+  const target = span / 6;
+  const niceSteps = [50, 100, 200, 500, 1000, 2000, 5000, 10000];
+  return niceSteps.find(s => s >= target) || target;
+}
+
+// Tight linear-axis bounds for a numeric series. Filters out exact zeros
+// (rows that represent "no activity" rather than a real low value), then
+// snaps the min/max to a "nice" step. The floor sits ONE STEP below the
+// data minimum (clamped at zero) so the lowest data point has breathing
+// room from the chart edge rather than being pinned at the bottom. The
+// top snaps to the next step above the data maximum.
+// Used for the SOV chart HHI y-axis (always linear) and as a building
+// block for the SOV x-axis below.
+function tightBounds(values) {
+  const filtered = values.filter(v => v > 0);
+  if (!filtered.length) return { min: 0, max: 1, step: 1 };
+  const vmin = Math.min(...filtered);
+  const vmax = Math.max(...filtered);
+  const span = vmax - vmin;
+  const step = pickNiceStep(span);
+  return {
+    min: Math.max(0, Math.floor(vmin / step) * step - step),
+    max: Math.ceil(vmax / step) * step,
+    step,
+  };
+}
+
+// Pick SOV x-axis configuration. Returns { min, max, useLog }.
+// Per DD-018: use a log scale ONLY when the meaningful-value range spans
+// more than ~1.5 orders of magnitude (e.g. Coinbase streaming 0.4%-42%
+// gives a ratio of ~100, log triggers). Honda streaming (3%-10%, ratio
+// ~3) and Honda linear (1%-19%, ratio ~15) both stay linear so the data
+// doesn't cluster awkwardly. xMax is snapped to a nice cap ~15% above
+// the observed max.
+function pickSovAxis(values) {
+  const meaningful = values.filter(v => v >= 0.1);
+  const vmax = Math.max(...values, 1);
+  const vmin = meaningful.length ? Math.min(...meaningful) : 0.5;
+  const useLog = vmax / Math.max(vmin, 0.1) > 30;
+  const niceCapsLinear = [5, 10, 12, 15, 20, 25, 30, 40, 50, 75, 100];
+  const niceCapsLog    = [5, 10, 15, 20, 25, 30, 40, 50, 75, 100];
+  const caps = useLog ? niceCapsLog : niceCapsLinear;
+  const xMax = caps.find(c => c >= vmax * 1.15) || Math.ceil(vmax * 1.15);
+  return { min: useLog ? 0.3 : 0, max: xMax, useLog };
+}
 
 const REACH_THRESHOLD = 4;
 const PROPENSITY_THRESHOLD = 100;
@@ -517,10 +564,11 @@ export default function App() {
               padding: "22px 26px",
             }}>
               <div style={{ fontSize: 13, color: "#cbd5e1", lineHeight: 1.7, marginBottom: 14 }}>
-                Automotive Intenders are individuals whose online behavior signals active interest in purchasing a vehicle.
-                They are focusing on informational content about Honda and competitor vehicles, indicating that they
-                are approaching or already in a consideration phase. Samba TV identified 7.7MM households exhibiting
-                this behavior across a curated sample of websites.
+                Automotive Intenders are households actively researching their next potential vehicle.
+                Their online behavior shows consistent engagement with listings, pricing, reviews,
+                and specifications, the kind of in-depth comparison shopping people do when they
+                are seriously considering a purchase. Samba identified 7.7MM households across a
+                curated sample of automotive research destinations.
               </div>
               <div style={{ display: "flex", alignItems: "baseline", gap: 8, marginBottom: 14 }}>
                 <span style={{ fontSize: 18, fontWeight: 700, color: "#f8fafc" }}>Automotive Intenders</span>
@@ -531,14 +579,14 @@ export default function App() {
                 This audience is identified through online behaviors observed in the last 30 days:
               </div>
               <div style={{ display: "flex", flexDirection: "column", gap: 6, fontSize: 13, color: "#cbd5e1", lineHeight: 1.7 }}>
-                <div>• Browsing listings on <span style={{ color: "#f1f5f9", fontWeight: 600 }}>CarGurus</span>, <span style={{ color: "#f1f5f9", fontWeight: 600 }}>CarsDirect</span>, and <span style={{ color: "#f1f5f9", fontWeight: 600 }}>AutoTempest</span></div>
-                <div>• Checking valuations on <span style={{ color: "#f1f5f9", fontWeight: 600 }}>Kelley Blue Book</span></div>
-                <div>• Reading reviews on <span style={{ color: "#f1f5f9", fontWeight: 600 }}>MotorTrend</span>, <span style={{ color: "#f1f5f9", fontWeight: 600 }}>Car and Driver</span>, and <span style={{ color: "#f1f5f9", fontWeight: 600 }}>The Drive</span></div>
-                <div>• Comparing specifications on <span style={{ color: "#f1f5f9", fontWeight: 600 }}>Ultimate Specs</span> and <span style={{ color: "#f1f5f9", fontWeight: 600 }}>Zero to 60 Times</span></div>
-                <div>• Scanning owner feedback on <span style={{ color: "#f1f5f9", fontWeight: 600 }}>CarComplaints</span></div>
+                <div>• Browsing new and used vehicle listings on <span style={{ color: "#f1f5f9", fontWeight: 600 }}>CarGurus</span>, <span style={{ color: "#f1f5f9", fontWeight: 600 }}>CarsDirect</span>, and <span style={{ color: "#f1f5f9", fontWeight: 600 }}>AutoTempest</span></div>
+                <div>• Looking up trade-in values and resale pricing on <span style={{ color: "#f1f5f9", fontWeight: 600 }}>Kelley Blue Book</span></div>
+                <div>• Reading expert reviews and road tests on <span style={{ color: "#f1f5f9", fontWeight: 600 }}>MotorTrend</span>, <span style={{ color: "#f1f5f9", fontWeight: 600 }}>Car and Driver</span>, and <span style={{ color: "#f1f5f9", fontWeight: 600 }}>The Drive</span></div>
+                <div>• Comparing performance specifications on <span style={{ color: "#f1f5f9", fontWeight: 600 }}>Ultimate Specs</span> and <span style={{ color: "#f1f5f9", fontWeight: 600 }}>Zero to 60 Times</span></div>
+                <div>• Researching reliability concerns and owner-reported issues on <span style={{ color: "#f1f5f9", fontWeight: 600 }}>CarComplaints</span></div>
               </div>
               <div style={{ fontSize: 11, color: "#64748b", fontStyle: "italic", marginTop: 10, lineHeight: 1.6 }}>
-                The websites above are a representative sample of automotive research destinations used to identify in-market consumers across all brands.
+                The websites above are a representative sample of automotive research destinations covering a broad set of automotive brands.
               </div>
             </div>
 
@@ -561,14 +609,19 @@ export default function App() {
               </div>
               <svg viewBox="0 0 310 290" style={{ width: "82.5%", alignSelf: "center" }}>
                 {[
-                  { key: "streamingOnly", start: 0,   end: 14,  color: "#ef4444", hitY: 0,   hitH: 40,  pct: "13.6%", label: "Streaming Only"          },
-                  { key: "both",          start: 14,  end: 33,  color: "#991b1b", hitY: 40,  hitH: 55,  pct: "18.9%", label: "Streaming and Linear TV" },
-                  { key: "linearOnly",    start: 33,  end: 60,  color: "#fca5a5", hitY: 95,  hitH: 75,  pct: "26.9%", label: "Linear TV Only"          },
+                  // Dark-to-light gradient: Streaming Only is darkest, Linear Only is lightest.
+                  // Subtle matte palette (less saturated than pure Honda red) for an editorial feel.
+                  // See DD-017 for the brand-specific reach grid customization convention.
+                  { key: "streamingOnly", start: 0,   end: 14,  color: "#8a2424", hitY: 0,   hitH: 40,  pct: "13.6%", label: "Streaming Only"          },
+                  { key: "both",          start: 14,  end: 33,  color: "#d65555", hitY: 40,  hitH: 55,  pct: "18.9%", label: "Streaming and Linear TV" },
+                  { key: "linearOnly",    start: 33,  end: 60,  color: "#edb5b5", hitY: 95,  hitH: 75,  pct: "26.9%", label: "Linear TV Only"          },
                   { key: "unreached",     start: 60,  end: 100, color: "#475569", hitY: 170, hitH: 120, pct: "40.5%", label: "Not Reached on TV"       },
                 ].map(group => {
                   const dimmed = hoveredGroup && hoveredGroup !== group.key;
                   const textTarget = hoveredGroup === group.key;
-                  const textY = group.key === "unreached" ? 14 : group.key === "linearOnly" ? 200 : 150;
+                  // For unreached: center the hover text vertically across the three reach
+                  // categories (combined SVG y-range 0-170, midpoint 85).
+                  const textY = group.key === "unreached" ? 85 : group.key === "linearOnly" ? 200 : 150;
                   return (
                     <g key={group.key}
                       onMouseEnter={() => setHoveredGroup(group.key)}
@@ -606,20 +659,20 @@ export default function App() {
               </svg>
               <div style={{ display: "flex", gap: 12, marginTop: 14, fontSize: 11, color: "#cbd5e1", flexWrap: "wrap" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
-                  <div style={{ width: 10, height: 10, borderRadius: 2, background: "#ef4444" }} />
+                  <div style={{ width: 10, height: 10, borderRadius: 2, background: "#8a2424" }} />
                   Streaming Only
                 </div>
                 <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
-                  <div style={{ width: 10, height: 10, borderRadius: 2, background: "#991b1b" }} />
+                  <div style={{ width: 10, height: 10, borderRadius: 2, background: "#d65555" }} />
                   Streaming and Linear TV
                 </div>
                 <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
-                  <div style={{ width: 10, height: 10, borderRadius: 2, background: "#fca5a5" }} />
+                  <div style={{ width: 10, height: 10, borderRadius: 2, background: "#edb5b5" }} />
                   Linear TV Only
                 </div>
                 <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
                   <div style={{ width: 10, height: 10, borderRadius: 2, background: "#475569" }} />
-                  Unreached
+                  Not Reached
                 </div>
               </div>
             </div>
@@ -862,37 +915,40 @@ export default function App() {
           const svgW = 540, svgH = 405;
           const padL = 72, padR = 24, padT = 28, padB = 44;
           const plotW = svgW - padL - padR, plotH = svgH - padT - padB;
-          // Mode-dependent axis configuration.
-          // Streaming: SOV ranges 0.4% to 42%, very skewed -> log10 scale.
-          // Linear: SOV ranges 0% to 100% (many zeros, many monopolies) -> linear scale.
-          const isLinear = viewMode === "linear";
-
-          // Data-driven bounds (snug) computed across all platforms in view.
+          // Axis configuration is fully data-driven (see DD-018):
+          //   * HHI y-axis: ALWAYS linear, tight bounds via tightBounds().
+          //   * SOV x-axis: linear by default; log only when the data range
+          //     exceeds ~1.5 orders of magnitude (pickSovAxis decides).
+          // Honda's streaming SOV (3-10%) and linear SOV (0-19%) both stay
+          // linear. Coinbase's streaming SOV (0.4-42%) would auto-pick log.
           const sovValues = sovMerged.map(d => d.honda);
           const hhiValues = sovMerged.map(d => d.hhi);
-          const hhiBounds = computeBounds(hhiValues, { step: 500 });
 
-          const xMin = isLinear ? 0 : 0.3;
-          // Streaming X is log10 -> pick a nice log-friendly cap above the max.
-          // Linear X stays 0-100 because the data legitimately spans the full range.
-          const xMax = isLinear ? 100 : (() => {
-            const vmax = Math.max(...sovValues);
-            const niceCaps = [10, 20, 30, 40, 50, 75];
-            return niceCaps.find(c => c >= vmax * 1.1) || Math.ceil(vmax * 1.1);
-          })();
-          const hhiMin = hhiBounds.min;
-          const hhiMax = hhiBounds.max;
-          const xScale = isLinear
-            ? (v => padL + (v / xMax) * plotW)
-            : (() => {
+          const { min: xMin, max: xMax, useLog: useLogX } = pickSovAxis(sovValues);
+          const { min: hhiMin, max: hhiMax, step: hhiStep } = tightBounds(hhiValues);
+
+          const xScale = useLogX
+            ? (() => {
                 const xLog = v => Math.log10(Math.max(v, xMin));
                 const xLogMin = xLog(xMin), xLogMax = xLog(xMax);
                 return v => padL + ((xLog(v) - xLogMin) / (xLogMax - xLogMin)) * plotW;
+              })()
+            : (v => padL + (v / xMax) * plotW);
+
+          const xTicks = useLogX
+            ? [0.5, 1, 2, 5, 10, 20, 30, 40, 50, 75, 100].filter(t => t >= xMin && t <= xMax)
+            : (() => {
+                const sets = [
+                  { upTo: 12,  ticks: [0, 3, 6, 9, 12] },
+                  { upTo: 15,  ticks: [0, 5, 10, 15] },
+                  { upTo: 25,  ticks: [0, 5, 10, 15, 20, 25] },
+                  { upTo: 50,  ticks: [0, 10, 20, 30, 40, 50] },
+                  { upTo: 100, ticks: [0, 25, 50, 75, 100] },
+                ];
+                const set = sets.find(s => xMax <= s.upTo);
+                return set ? set.ticks.filter(t => t <= xMax) : [0, xMax];
               })();
-          const xTicks = isLinear
-            ? [0, 25, 50, 75, 100]
-            : [0.5, 1, 2, 5, 10, 20, 30, 40, 50, 75].filter(t => t <= xMax);
-          const hhiStep = isLinear ? 500 : 1000;
+
           const yScale = v => padT + plotH - ((v - hhiMin) / (hhiMax - hhiMin)) * plotH;
           const maxPriority = Math.max(...sovMerged.map(d => d.priority));
           const rScale = v => 5 + (v / maxPriority) * 16;
