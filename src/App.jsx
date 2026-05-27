@@ -563,7 +563,7 @@ export default function App() {
               flex: 1, background: "#16162a", borderRadius: 12, border: "1px solid #1e293b",
               padding: "22px 26px",
             }}>
-              <div style={{ fontSize: 13, color: "#cbd5e1", lineHeight: 1.7, marginBottom: 14 }}>
+              <div style={{ fontSize: 13, color: "#cbd5e1", lineHeight: 1.7, marginBottom: 24 }}>
                 Automotive Intenders are households actively researching their next potential vehicle.
                 Their online behavior shows consistent engagement with listings, pricing, reviews,
                 and specifications, the kind of in-depth comparison shopping people do when they
@@ -592,7 +592,7 @@ export default function App() {
 
             {/* Right pane – car grid reach visualization */}
             <div style={{
-              width: 380, flexShrink: 0, background: "#16162a", borderRadius: 12,
+              width: 440, flexShrink: 0, background: "#16162a", borderRadius: 12,
               border: "1px solid #1e293b", padding: "22px 26px",
               display: "flex", flexDirection: "column", justifyContent: "center",
             }}>
