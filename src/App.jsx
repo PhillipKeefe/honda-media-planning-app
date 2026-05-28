@@ -209,9 +209,9 @@ function getTier(d, reachThreshold = REACH_THRESHOLD) {
 }
 
 const TIER_META = {
-  anchor:      { label: "Primary Investment",  full: "High Share + High Propensity",  color: "#22c55e", bg: "rgba(34,197,94,0.08)",   rec: "Prioritize your media budget on these {unit}" },
-  efficiency:  { label: "Efficiency Focus",    full: "Low Share + High Propensity",   color: "#3b82f6", bg: "rgba(59,130,246,0.08)",  rec: "Focus spend on smaller {unit} that resonate most with your audience" },
-  scale:       { label: "Mass Reach",          full: "High Share + Low Propensity",   color: "#f59e0b", bg: "rgba(245,158,11,0.08)",  rec: "Invest for broad reach where your audience already spends most of their time" },
+  anchor:      { label: "Primary Investment",  full: "High Share + High Propensity",  color: "#22c55e", bg: "rgba(34,197,94,0.08)",   rec: "Prioritize Honda’s media budget on these {unit}" },
+  efficiency:  { label: "Efficiency Focus",    full: "Low Share + High Propensity",   color: "#3b82f6", bg: "rgba(59,130,246,0.08)",  rec: "Focus spend on smaller {unit} that resonate most with Honda’s audience" },
+  scale:       { label: "Mass Reach",          full: "High Share + Low Propensity",   color: "#f59e0b", bg: "rgba(245,158,11,0.08)",  rec: "Invest for broad reach where Honda’s audience already spends most of their time" },
   deprioritize:{ label: "Supplemental",        full: "Low Share + Low Propensity",    color: "#94a3b8", bg: "rgba(148,163,184,0.08)", rec: "Consider after prioritizing other categories" },
 };
 
@@ -999,13 +999,6 @@ export default function App() {
           const maxPriority = Math.max(...sovMerged.map(d => d.priority));
           const rScale = v => 5 + (v / maxPriority) * 16;
 
-          // Identify the dominant brand on a monopoly platform (HHI >= 9999).
-          // Returns null when no single brand exceeds 50% share.
-          const dominantBrand = (d) => {
-            for (const b of BRANDS_ORDER) if ((d[b] || 0) >= 50) return b;
-            return null;
-          };
-
           const tierOptions = [
             { key: "all",          label: "All Platforms"       },
             { key: "anchor",       label: "Primary Investment"  },
@@ -1033,7 +1026,7 @@ export default function App() {
             {/* Intro paragraph in its own rounded rectangle */}
             <div style={{ background: "#16162a", borderRadius: 12, border: "1px solid #1e293b", padding: "20px 24px", marginBottom: 32 }}>
               <div style={{ fontSize: 13, color: "#cbd5e1", lineHeight: 1.7 }}>
-                The Platform Analysis tab identified where Automotive Intenders spend their time across streaming and linear TV. This view asks the next question: who else is competing for that attention? The scatter plot below maps Honda&#8217;s share of automotive advertising against how concentrated advertising is across its competitive set. The bar chart breaks that competition down by brand. Use the platform dropdown to focus on investment categories that matter most to your strategy, or select a brand to see how they&#8217;re positioned across the competitive media landscape.
+                The Platform Analysis tab identified where Automotive Intenders spend their time across streaming and linear TV. This view asks the next question: who else is competing for that attention? The scatter plot below maps Honda&#8217;s share of automotive advertising against how concentrated advertising is across its competitive set. The bar chart breaks that competition down by brand. Use the platform dropdown to focus on investment categories that matter most to Honda&#8217;s strategy, or select a brand to see how they&#8217;re positioned across the competitive media landscape.
               </div>
             </div>
 
@@ -1047,7 +1040,7 @@ export default function App() {
                     {viewMode === "streaming" ? (
                       <>Honda holds 5-7% SOV across three Primary Investment streaming platforms with high audience affinity: Amazon Prime Video, Paramount+, and Xfinity Stream. Toyota leads on Amazon Prime Video and Xfinity Stream, while Chevy leads on Paramount+. The rest of the major-auto field clusters between 12% and 19% across the set, with Honda alone at single digits. Focus on what makes Honda unique among this broad competitive set to break through to Automotive Intenders.</>
                     ) : (
-                      <>Across seven Primary Investment linear networks over-indexing on Automotive Intenders, Honda&#8217;s SOV varies sharply: 11-12% on NBC and ESPN, 7-8% on CBS and Fox Broadcasting, and near-zero on CNN, TBS, and History. Each of those three is a near-monopoly for a single competitor: Chevy holds 65% on CNN, Subaru 62% on TBS, and Hyundai 72% on History. Focus Honda&#8217;s linear strategy on defending NBC and ESPN, expanding on CBS and Fox Broadcasting, and stealing share through targeted messaging on networks dominated by a single competitor.</>
+                      <>Across seven Primary Investment linear networks with moderate to high affinity among Automotive Intenders, Honda&#8217;s SOV varies sharply: 11-12% on NBC and ESPN, 7-8% on CBS and Fox Broadcasting, and near-zero on CNN, TBS, and History. Each of those three is a near-monopoly for a single competitor: Chevy holds 65% on CNN, Subaru 62% on TBS, and Hyundai 72% on History. Focus Honda&#8217;s linear strategy on defending NBC and ESPN, expanding on CBS and Fox Broadcasting, and stealing share through targeted messaging on networks dominated by a single competitor.</>
                     )}
                   </div>
                 </div>
@@ -1057,7 +1050,7 @@ export default function App() {
                     {viewMode === "streaming" ? (
                       <>Honda&#8217;s SOV is only 5-6% across the five Efficiency Focus streaming platforms over-indexing on Automotive Intenders: Fox Nation, Vudu, fubo, Google Play, and Pluto TV. Fox Nation has the highest audience affinity, yet Chevy and Ford together hold 60% SOV. The other four are more competitively fragmented than Fox Nation, with no single competitor exceeding 26%. Prioritize those four for efficient share growth, where Honda&#8217;s spend competes against a level field, and use Fox Nation tactically to differentiate Honda from Chevy and Ford.</>
                     ) : (
-                      <>Honda has near-zero presence on six Efficiency Focus cable networks where Automotive Intenders over-index: MLB Network, Disney Junior, AMC, FX, Investigation Discovery, and Ion Television. Five are concentrated to a single competitor: Ford leads MLB Network at 53%, Hyundai monopolizes AMC at 95%, Nissan dominates FX at 82%, and Subaru leads both Investigation Discovery at 70% and Ion Television at 66%. Disney Junior is the exception, with no auto category activity at all. Prioritize Disney Junior for uncontested entry, and commit spend on the five concentrated networks to pull share from their dominant competitors.</>
+                      <>Honda has little to no presence on six Efficiency Focus cable networks that Automotive Intenders have the highest affinity for: MLB Network, Disney Junior, AMC, FX, Investigation Discovery, and Ion Television. Five are concentrated to a single competitor: Ford leads MLB Network at 53%, Hyundai monopolizes AMC at 95%, Nissan dominates FX at 82%, and Subaru leads both Investigation Discovery at 70% and Ion Television at 66%. Disney Junior is the exception, with no auto category activity at all. Prioritize Disney Junior for uncontested entry, and commit spend on the five concentrated networks to pull share from their dominant competitors.</>
                     )}
                   </div>
                 </div>
@@ -1092,7 +1085,7 @@ export default function App() {
                   ))}
                   <line x1={padL} x2={svgW-padR} y1={yScale(medianHHI)} y2={yScale(medianHHI)} stroke="#475569" strokeWidth={1.5} strokeDasharray="6 4" />
                   <line x1={xScale(medianHondaSov)} x2={xScale(medianHondaSov)} y1={padT} y2={svgH-padB} stroke="#475569" strokeWidth={1.5} strokeDasharray="6 4" />
-                  <text x={(padL + svgW-padR)/2} y={svgH-2} textAnchor="middle" fill="#94a3b8" fontSize={9} fontFamily="DM Sans">Honda Share of Voice (%)</text>
+                  <text x={(padL + svgW-padR)/2} y={svgH-2} textAnchor="middle" fill="#94a3b8" fontSize={9} fontFamily="DM Sans">Honda&#8217;s Share of Voice (%)</text>
                   <text x={22} y={(padT + svgH-padB)/2} textAnchor="middle" fill="#94a3b8" fontSize={9} fontFamily="DM Sans" transform={`rotate(-90 22 ${(padT+svgH-padB)/2})`}>
                     <tspan x={22} dy="-0.6em">Competitive Voice Concentration</tspan>
                     <tspan x={22} dy="1.3em">(Herfindahl-Hirschman Index)</tspan>
@@ -1115,25 +1108,11 @@ export default function App() {
                       const softDimmed = tierMatch && sovSelected && !isSelected;
                       const fillOp   = hardDimmed ? 0.08 : softDimmed ? 0.2  : isSelected ? 1    : isHovered ? 0.85 : 0.6;
                       const strokeOp = hardDimmed ? 0.1  : softDimmed ? 0.25 : isSelected ? 1    : isHovered ? 0.95 : 0.7;
-                      // Monopoly platforms (HHI = 10,000, one brand owns all SOV) get an additional
-                      // outer ring in the dominant brand's color. Visually distinct from the tier
-                      // fill without using badges or icons. Apple TV+ is excluded because its
-                      // monopoly reflects a single low-volume placement and elevating it to the same
-                      // visual status as USA or HOME & GARDEN overstates its strategic significance.
-                      const monopolyBrand = d.hhi >= 9999 && d.app !== "Apple TV+" ? dominantBrand(d) : null;
-                      const monopolyColor = monopolyBrand ? BRAND_COLORS[monopolyBrand] : null;
                       return (
                         <g key={d.app} style={{ cursor: "pointer" }}
                           onClick={() => { setSovSelected(isSelected ? null : d); setSovHovered(null); }}
                           onMouseEnter={() => setSovHovered(d.app)}
                           onMouseLeave={() => setSovHovered(null)}>
-                          {monopolyColor && !isSelected && (
-                            <circle cx={cx} cy={cy} r={r + 3}
-                              fill="none" stroke={monopolyColor}
-                              strokeOpacity={hardDimmed ? 0.15 : softDimmed ? 0.35 : 0.85}
-                              strokeWidth={1.5}
-                            />
-                          )}
                           <circle cx={cx} cy={cy} r={r}
                             fill={tierColor} fillOpacity={fillOp}
                             stroke={isSelected ? "#fff" : tierColor} strokeOpacity={strokeOp}
@@ -1179,7 +1158,7 @@ export default function App() {
                     }}>
                       <div style={{ fontWeight: 700, fontSize: 15, color: "#f8fafc", marginBottom: 4 }}>{target.app}</div>
                       <div style={{ display: "flex", justifyContent: "space-between", gap: 24, whiteSpace: "nowrap" }}>
-                        <span style={{ color: "#94a3b8" }}>Honda SOV</span>
+                        <span style={{ color: "#94a3b8" }}>Honda&#8217;s SOV</span>
                         <span style={{ fontFamily: "JetBrains Mono", fontWeight: 500 }}>{target.honda.toFixed(1)}%</span>
                       </div>
                       <div style={{ display: "flex", justifyContent: "space-between", gap: 24, whiteSpace: "nowrap" }}>
@@ -1203,15 +1182,25 @@ export default function App() {
                   ))}
                 </div>
                 <ol style={{ listStyle: "none", padding: 0, margin: "10px 0 0", display: "flex", flexDirection: "column", gap: 4, counterReset: "chart-note" }}>
-                  {(viewMode === "streaming" ? [
-                    "Bubble size reflects Priority Score.",
-                    "Higher Herfindahl-Hirschman Index (HHI) values indicate fewer competitors capturing larger shares of voice.",
-                    <>X-axis uses a log<sub style={{ fontSize: "0.7em" }}>10</sub> scale to better distinguish low-SOV platforms (most fall below 10%).</>,
-                  ] : [
-                    "Bubble size reflects Priority Score.",
-                    "Higher Herfindahl-Hirschman Index (HHI) values indicate fewer competitors capturing larger shares of voice.",
-                    <>Networks with HHI = 10,000 (a single brand owns 100% SOV) are shown with an outer ring in the dominant brand&#8217;s color.</>,
-                  ]).map((note, i) => (
+                  {(() => {
+                    // Footnotes drive off actual chart state (see DD-018, DD-021):
+                    //   1. Bubble size — always shown.
+                    //   2. HHI definition — always shown. Appendix about HHI = 10,000
+                    //      (single-brand monopoly) is appended only when any visible
+                    //      platform actually has HHI >= 9999.
+                    //   3. Log-scale rationale — shown only when useLogX is true.
+                    const hasMonopoly = sovMerged.some(d => d.hhi >= 9999);
+                    const notes = [
+                      "Bubble size reflects Priority Score.",
+                      hasMonopoly
+                        ? "Higher Herfindahl-Hirschman Index (HHI) values indicate fewer competitors capturing larger shares of voice, and a value of 10,000 indicates a single brand holds 100% share."
+                        : "Higher Herfindahl-Hirschman Index (HHI) values indicate fewer competitors capturing larger shares of voice.",
+                    ];
+                    if (useLogX) {
+                      notes.push(<>X-axis uses a log<sub style={{ fontSize: "0.7em" }}>10</sub> scale to better distinguish platforms with widely varying SOV.</>);
+                    }
+                    return notes;
+                  })().map((note, i) => (
                     <li key={i} style={{ display: "flex", gap: 8, fontSize: 11, color: "#64748b", lineHeight: 1.5 }}>
                       <span style={{ flexShrink: 0, fontFamily: "JetBrains Mono", color: "#475569", fontWeight: 600 }}>{i + 1}.</span>
                       <span>{note}</span>
