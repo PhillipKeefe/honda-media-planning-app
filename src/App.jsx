@@ -561,10 +561,10 @@ export default function App() {
                 Finding
               </div>
               <div style={{ display: "flex", flexDirection: "column", gap: 2, fontSize: 13, color: "#cbd5e1", lineHeight: 1.7, marginLeft: -10 }}>
-                <div className="glance-finding">7.7MM households are Automotive Intenders, identified through their online research of vehicles, prices, reviews, and valuations over the past 30 days</div>
+                <div className="glance-finding">7.7MM households are Automotive Intenders, identified through their online research of vehicle listings, pricing, reviews, specifications, and reliability over the past 30 days</div>
                 <div className="glance-finding">Honda&#8217;s TV advertising reached 59.5% of Automotive Intenders, leaving a high-value audience of 3.1MM households not exposed on streaming or linear TV</div>
-                <div className="glance-finding">Honda holds 5-7% SOV across the Primary Investment streaming platforms (Amazon Prime Video, Paramount+, Xfinity Stream), trailing Toyota and Chevy across the set</div>
-                <div className="glance-finding">On linear, Honda holds 11-12% SOV on NBC and ESPN but is largely absent from CNN, TBS, and CBS where Toyota, Chevy, and Subaru lead</div>
+                <div className="glance-finding">Honda holds 5-7% SOV across the Primary Investment streaming platforms with the highest audience affinity, trailing every other major auto brand at 12-19%</div>
+                <div className="glance-finding">On linear, Honda holds 11-12% SOV on NBC and ESPN but holds near-zero share on CNN, TBS, and History where Chevy, Subaru, and Hyundai each dominate a single network</div>
               </div>
             </div>
             <div style={{ flex: 1, borderLeft: "3px solid #3b82f6", paddingLeft: 16 }}>
@@ -573,8 +573,8 @@ export default function App() {
               </div>
               <div style={{ display: "flex", flexDirection: "column", gap: 2, fontSize: 13, color: "#cbd5e1", lineHeight: 1.7, marginLeft: -10 }}>
                 <div className="glance-action">Create an addressable audience of Automotive Intenders and target them across most programmatic inventory</div>
-                <div className="glance-action">Reallocate streaming media budget into Amazon Prime Video, Paramount+, and Xfinity Stream to increase Honda&#8217;s exposure to Automotive Intenders on those platforms</div>
-                <div className="glance-action">Maintain Honda&#8217;s investment on NBC and ESPN, and expand into CBS, CNN, TBS, and Fox Broadcasting to increase Honda&#8217;s exposure to Automotive Intenders on linear TV</div>
+                <div className="glance-action">Reallocate streaming media budget into Amazon Prime Video, Paramount+, and Xfinity Stream to increase Honda&#8217;s presence in the Primary Investment category</div>
+                <div className="glance-action">Defend Honda&#8217;s positions on NBC and ESPN, and pull share through targeted messaging on CNN, TBS, and History</div>
               </div>
             </div>
           </div>
@@ -1033,7 +1033,7 @@ export default function App() {
             {/* Intro paragraph in its own rounded rectangle */}
             <div style={{ background: "#16162a", borderRadius: 12, border: "1px solid #1e293b", padding: "20px 24px", marginBottom: 32 }}>
               <div style={{ fontSize: 13, color: "#cbd5e1", lineHeight: 1.7 }}>
-                The Platform Analysis tab identified where Automotive Intenders spend their time across streaming and linear TV. This view asks the next question: who else is competing for that attention? The scatter plot below maps Honda&#8217;s share of automotive-category advertising against competitive ad density. The bar chart breaks that competition down by brand. Use the platform dropdown to focus on investment categories that matter most to your strategy, or select a brand to see how they&#8217;re positioned across the competitive media landscape.
+                The Platform Analysis tab identified where Automotive Intenders spend their time across streaming and linear TV. This view asks the next question: who else is competing for that attention? The scatter plot below maps Honda&#8217;s share of automotive advertising against how concentrated advertising is across its competitive set. The bar chart breaks that competition down by brand. Use the platform dropdown to focus on investment categories that matter most to your strategy, or select a brand to see how they&#8217;re positioned across the competitive media landscape.
               </div>
             </div>
 
@@ -1045,9 +1045,9 @@ export default function App() {
                   <div style={{ fontSize: 10, fontWeight: 700, color: "#22c55e", textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: 5 }}>Primary Investment</div>
                   <div style={{ fontSize: 12, color: "#cbd5e1", lineHeight: 1.65 }}>
                     {viewMode === "streaming" ? (
-                      <>Honda holds between 5% and 7% SOV across Amazon Prime Video, Paramount+, and Xfinity Stream, all showing high platform affinity. Toyota leads on Amazon Prime Video and Xfinity Stream, while Chevy leads on Paramount+. Competition on these platforms is highly fragmented across multiple major brands, with no single competitor approaching a dominant share. Growing share on these platforms should be the top streaming priority.</>
+                      <>Honda holds 5-7% SOV across three Primary Investment streaming platforms with high audience affinity: Amazon Prime Video, Paramount+, and Xfinity Stream. Toyota leads on Amazon Prime Video and Xfinity Stream, while Chevy leads on Paramount+. The rest of the major-auto field clusters between 12% and 19% across the set, with Honda alone at single digits. Focus on what makes Honda unique among this broad competitive set to break through to Automotive Intenders.</>
                     ) : (
-                      <>Honda holds 11-12% SOV on NBC and ESPN but is largely absent from CBS, Fox Broadcasting, CNN, and TBS, all six networks showing modest to high network affinity. Toyota, Chevy, and Ford lead the broadcast networks, with Subaru holding a near-majority share on TBS and Chevy dominating CNN. Defending Honda&#8217;s NBC and ESPN positions while building presence on CBS, Fox Broadcasting, CNN, and TBS should anchor the linear plan.</>
+                      <>Across seven Primary Investment linear networks over-indexing on Automotive Intenders, Honda&#8217;s SOV varies sharply: 11-12% on NBC and ESPN, 7-8% on CBS and Fox Broadcasting, and near-zero on CNN, TBS, and History. Each of those three is a near-monopoly for a single competitor: Chevy holds 65% on CNN, Subaru 62% on TBS, and Hyundai 72% on History. Focus Honda&#8217;s linear strategy on defending NBC and ESPN, expanding on CBS and Fox Broadcasting, and stealing share through targeted messaging on networks dominated by a single competitor.</>
                     )}
                   </div>
                 </div>
@@ -1055,9 +1055,9 @@ export default function App() {
                   <div style={{ fontSize: 10, fontWeight: 700, color: "#3b82f6", textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: 5 }}>Efficiency Focus</div>
                   <div style={{ fontSize: 12, color: "#cbd5e1", lineHeight: 1.65 }}>
                     {viewMode === "streaming" ? (
-                      <>Fox Nation and Vudu are the key platforms to target. Honda already holds 6% SOV on Vudu (index 116), but its share on Fox Nation (125) is 5.6% against Chevy at 38%. Both platforms present an opportunity for Honda to pull share away from Chevy and other competitors by highlighting its unique position and product offerings. Make Fox Nation and Vudu an efficient complement to Honda&#8217;s Primary Investment platforms.</>
+                      <>Honda&#8217;s SOV is only 5-6% across the five Efficiency Focus streaming platforms over-indexing on Automotive Intenders: Fox Nation, Vudu, fubo, Google Play, and Pluto TV. Fox Nation has the highest audience affinity, yet Chevy and Ford together hold 60% SOV. The other four are more competitively fragmented than Fox Nation, with no single competitor exceeding 26%. Prioritize those four for efficient share growth, where Honda&#8217;s spend competes against a level field, and use Fox Nation tactically to differentiate Honda from Chevy and Ford.</>
                     ) : (
-                      <>Honda is largely absent from the cable networks where Automotive Intenders most over-index: MLB Network, Disney Junior, AMC, and History. Hyundai holds a near-monopoly share on AMC (95%) and History (72%), Ford leads MLB Network (53%), and Toyota leads CNN among the broader Efficiency Focus set. Investing in these networks provides Honda an opportunity to differentiate its vehicle lineup where major competitors are already building category presence.</>
+                      <>Honda has near-zero presence on six Efficiency Focus cable networks where Automotive Intenders over-index: MLB Network, Disney Junior, AMC, FX, Investigation Discovery, and Ion Television. Five are concentrated to a single competitor: Ford leads MLB Network at 53%, Hyundai monopolizes AMC at 95%, Nissan dominates FX at 82%, and Subaru leads both Investigation Discovery at 70% and Ion Television at 66%. Disney Junior is the exception, with no auto category activity at all. Prioritize Disney Junior for uncontested entry, and commit spend on the five concentrated networks to pull share from their dominant competitors.</>
                     )}
                   </div>
                 </div>
